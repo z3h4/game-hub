@@ -1,10 +1,17 @@
 import apiClient, { CanceledError } from "@/services/api-client";
 import { useEffect, useState } from "react";
 
+export interface Platform {
+  id: number;
+  name: string;
+  slug: string;
+}
+
 export interface Game {
   id: number;
   name: string;
   background_image: string;
+  parent_platforms: Platform[];
 }
 
 export interface FetchGamesResponse {
@@ -13,7 +20,6 @@ export interface FetchGamesResponse {
 }
 
 const useGames = () => {
-  const query = "auto";
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
 
@@ -22,7 +28,6 @@ const useGames = () => {
 
     apiClient
       .get<FetchGamesResponse>("/games", {
-        params: { q: query },
         signal: controller.signal,
       })
       .then((res) => setGames(res.data.results))
