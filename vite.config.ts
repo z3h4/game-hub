@@ -10,4 +10,8 @@ export default defineConfig({
       "@": path.resolve(import.meta.dirname, "./src"),
     },
   },
+  // proxies /api to Rails, so there are no CORS issues in development.
+  server: {
+    proxy: { "/api": "http://localhost:3000" },
+  },
 });
