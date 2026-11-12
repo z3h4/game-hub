@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { CanceledError } from "axios";
 
 // Rawg
 // export default axios.create({
@@ -14,3 +14,5 @@ export default axios.create({
   baseURL: "api", // proxied to Rails by Vite in dev
   timeout: 5000,
 });
+
+export { CanceledError };
