@@ -8,7 +8,11 @@ const GameGrid = () => {
   return (
     <>
       {error && <Text>{error}</Text>}
-      <SimpleGrid minChildWidth="sm" gap="40px" padding="10px">
+      <SimpleGrid
+        columns={{ base: 1, sm: 2, md: 3, lg: 4 }}
+        gap="20px"
+        padding="10px"
+      >
         {games.map((game) => (
           <GameCard key={game.id} game={game}></GameCard>
         ))}
