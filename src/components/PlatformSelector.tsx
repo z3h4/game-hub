@@ -17,7 +17,7 @@ const PlatformSelector = ({ selectedPlatform, onSelectPlatform }: Props) => {
     <Menu.Root>
       {/* Use asChild so Menu.Trigger merges its trigger logic onto the Button instead of rendering a wrapper button */}
       <Menu.Trigger asChild>
-        <Button variant="outline">
+        <Button variant="outline" fontWeight="bold">
           {selectedPlatform?.name || "Platforms"} <BsChevronDown />
         </Button>
       </Menu.Trigger>
