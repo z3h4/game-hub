@@ -3,10 +3,11 @@ import useGenres, { type Genre } from "@/hooks/useGenres";
 import GenreListSkeleton from "./GenreListSkeleton";
 
 interface Props {
+  selectedGenre: Genre | null;
   onSelectGenre: (genre: Genre) => void;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   const { data: genres, isLoading } = useGenres();
   const skeletons = Array.from({ length: 25 }, (_, i) => i + 1);
 
@@ -24,7 +25,10 @@ const GenreList = ({ onSelectGenre }: Props) => {
                 boxSize="32px"
                 borderRadius={8}
               />
-              <Link onClick={() => onSelectGenre(genre)} fontSize="lg">
+              <Link
+                onClick={() => onSelectGenre(genre)}
+                fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+              >
                 {genre.name}
               </Link>
             </HStack>
